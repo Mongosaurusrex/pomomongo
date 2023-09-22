@@ -1,6 +1,6 @@
 {
-  "name": "Mongo",
-  "displayName": "pomomongo",
+  "name": "Pomomongo",
+  "displayName": "Pomomongo",
   "description": "A pomodoro extension for you to be able to work efficiently whilst never leaving code",
   "version": "0.0.1",
   "engines": {

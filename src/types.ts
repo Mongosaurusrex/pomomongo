@@ -3,3 +3,10 @@ export type GlobalExtensionState = {
   interval?: NodeJS.Timer;
   runUntill: Date;
 };
+
+export type ExtensionUtils = {
+  ui: {
+    setStatusBarItemText: Function;
+    resetStatusBarItemText: Function;
+  };
+};
