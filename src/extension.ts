@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { GlobalExtensionState } from "./types";
 import initCommands from "./commands";
 import initUiComponents from "./ui";
+import initPlayer from "./player";
 
 const state: GlobalExtensionState = {
   running: false,
@@ -9,8 +10,12 @@ const state: GlobalExtensionState = {
 };
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
-  const { ...rest } = initUiComponents(subscriptions);
-  const extensionUtlis = { ui: { ...rest } };
+  const extensionUtlis = {
+    ui: { ...initUiComponents(subscriptions) },
+    player: {
+      ...initPlayer(),
+    },
+  };
   const { pressExtensionCommand } = initCommands(state, extensionUtlis);
 
   subscriptions.push(

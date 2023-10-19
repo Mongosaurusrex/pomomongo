@@ -3,20 +3,24 @@ import { ExtensionUtils, GlobalExtensionState } from "./types";
 import { calculateTimeRemaining } from "./utils/timer";
 
 const initCommands = (state: GlobalExtensionState, utils: ExtensionUtils) => {
-  const { ui } = utils;
+  const {
+    ui: { setStatusBarItemText, resetStatusBarItemText },
+    player: { playAlarm, playTickTock },
+  } = utils;
 
   const resetExtension = () => {
     state.running = !state.running;
     clearInterval(state.interval);
-    ui.resetStatusBarItemText();
+    resetStatusBarItemText();
   };
 
   return {
-    pressExtensionCommand: () => {
+    pressExtensionCommand: async () => {
       if (state.running) {
         resetExtension();
       } else {
         state.running = !state.running;
+        playTickTock();
 
         const { runForMinutes } =
           vscode.workspace.getConfiguration("pomomongo");
@@ -32,9 +36,10 @@ const initCommands = (state: GlobalExtensionState, utils: ExtensionUtils) => {
           );
           var secondsLeft = Math.floor((distance % (1000 * 60)) / 1000);
 
-          ui.setStatusBarItemText(`${minutesLeft}:${secondsLeft}`);
+          setStatusBarItemText(`${minutesLeft}:${secondsLeft}`);
 
           if (distance < 0) {
+            playAlarm();
             resetExtension();
           }
         }, 1000);

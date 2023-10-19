@@ -1,5 +1,5 @@
 {
-  "name": "Pomomongo",
+  "name": "pomomongo",
   "displayName": "Pomomongo",
   "description": "A pomodoro extension for you to be able to work efficiently whilst never leaving code",
   "version": "0.0.1",
@@ -22,35 +22,41 @@
           ],
           "default": 2,
           "description": "Specifies the time for the timer to run"
+        },
+        "pomomongo.playSounds": {
+          "type": [
+            "boolean"
+          ],
+          "default": true,
+          "description": "Should play sounds f.e when the timer is finished"
         }
       }
     }
   },
-  "main": "./dist/extension.js",
+  "main": "./out/extension.js",
   "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "vscode:prepublish": "npm run -S esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node && cp -R ./src/audio ./out",
+    "esbuild": "npm run -S esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run -S esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/vscode": "^1.82.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "@typescript-eslint/parser": "^6.4.1",
-    "eslint": "^8.47.0",
-    "glob": "^10.3.3",
-    "mocha": "^10.2.0",
-    "typescript": "^5.1.6",
-    "ts-loader": "^9.4.4",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "@vscode/test-electron": "^2.3.4"
+    "@types/glob": "^7.1.1",
+    "@types/lodash.debounce": "^4.0.6",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.40.0",
+    "esbuild": "^0.14.23",
+    "glob": "^7.1.5",
+    "lodash": "^4.17.21",
+    "mocha": "^6.2.2",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4",
+    "vscode-test": "^1.2.2"
+  },
+  "dependencies": {
+    "play-sound": "^1.1.3"
   }
 }

@@ -9,4 +9,8 @@ export type ExtensionUtils = {
     setStatusBarItemText: Function;
     resetStatusBarItemText: Function;
   };
+  player: {
+    playAlarm: () => void;
+    playTickTock: () => void;
+  };
 };
