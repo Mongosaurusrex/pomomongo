@@ -7,6 +7,8 @@ import initPlayer from "./player";
 const state: GlobalExtensionState = {
   running: false,
   runUntill: new Date(),
+  focusTime: true,
+  iteration: 1,
 };
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {

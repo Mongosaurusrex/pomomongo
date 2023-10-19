@@ -12,6 +12,8 @@ const initCommands = (state: GlobalExtensionState, utils: ExtensionUtils) => {
     state.running = !state.running;
     clearInterval(state.interval);
     resetStatusBarItemText();
+    state.iteration = 0;
+    state.focusTime = true;
   };
 
   return {
@@ -19,15 +21,13 @@ const initCommands = (state: GlobalExtensionState, utils: ExtensionUtils) => {
       if (state.running) {
         resetExtension();
       } else {
-        state.running = !state.running;
+        state.running = true;
         playTickTock();
 
-        const { runForMinutes } =
+        const { pomodoroTime, iterations, restTime } =
           vscode.workspace.getConfiguration("pomomongo");
 
-        state.runUntill = new Date(
-          new Date().getTime() + runForMinutes * 60000
-        );
+        state.runUntill = new Date(new Date().getTime() + pomodoroTime * 60000);
         state.interval = setInterval(() => {
           const distance = calculateTimeRemaining(state.runUntill);
 
@@ -39,8 +39,25 @@ const initCommands = (state: GlobalExtensionState, utils: ExtensionUtils) => {
           setStatusBarItemText(`${minutesLeft}:${secondsLeft}`);
 
           if (distance < 0) {
-            playAlarm();
-            resetExtension();
+            if (state.focusTime) {
+              playAlarm();
+              state.runUntill = new Date(
+                new Date().getTime() + restTime * 60000
+              );
+              state.focusTime = false;
+            } else {
+              if (state.iteration === iterations) {
+                resetExtension();
+                return;
+              }
+
+              playTickTock();
+              state.runUntill = new Date(
+                new Date().getTime() + pomodoroTime * 60000
+              );
+              state.focusTime = true;
+              state.iteration++;
+            }
           }
         }, 1000);
       }
