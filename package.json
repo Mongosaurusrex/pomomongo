@@ -3,7 +3,9 @@
   "displayName": "Pomomongo",
   "description": "A pomodoro extension for you to be able to work efficiently whilst never leaving code",
   "publisher": "mongosaurusrex",
-  "version": "0.0.1",
+  "repository": "https://github.com/Mongosaurusrex/pomomongo",
+  "icon": "./assets/pomomongo.png",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.82.0"
   },
@@ -50,14 +52,14 @@
   },
   "main": "./out/extension.js",
   "scripts": {
-    "vscode:prepublish": "npm run -S esbuild-base -- --minify",
+    "vscode:prepublish": "esbuild ./src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify && cp -R ./src/audio ./out",
     "esbuild-base": "esbuild ./src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node && cp -R ./src/audio ./out",
     "esbuild": "npm run -S esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run -S esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./",
     "test": "echo \"Error: no test specified\" && exit 0",
     "watch": "tsc -watch -p ./",
-    "deploy": "vsce publish --yarn"
+    "deploy": "vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
