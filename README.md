@@ -1,6 +1,6 @@
-# Mongo README
+# Pomomongo README
 
-This is the README for the extension "Pomomongo". 
+This is the README for the vscode extension "Pomomongo". <br>
 The aim is to create a useful "pomodoro"-type extension to supercharge and maximize your focus whilst never leaving VsCode.<br>
 Read about the Pomodoro method [here](https://www.techtarget.com/whatis/definition/pomodoro-technique)
 
@@ -44,7 +44,6 @@ If you experience issues that are not listed here, please report them [here](htt
 
 ## Planned improvements
 #### Soon
-- Better way to visually distinguish between a resting period and a focus period
 - Notifications to tell the user about when there is a switch in periods
 
 #### Later
