@@ -55,7 +55,4 @@ If you experience issues that are not listed here, please report them [here](htt
 ### 0.1.0
 First release of the Pomomongo pomodoro timer, basic functionality included
 
-
-
-
 ---
