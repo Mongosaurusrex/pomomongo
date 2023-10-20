@@ -6,16 +6,16 @@ const initUiComponents = (subscriptions: { dispose(): any }[]) => {
     1
   );
   statusBarItem.command = "pomomongo.pressExtension";
-  statusBarItem.text = `$(watch) Start timer`;
+  statusBarItem.text = `$(notebook-execute) Start timer`;
   subscriptions.push(statusBarItem);
   statusBarItem.show();
 
   return {
     setStatusBarItemText: (text: string) => {
-      statusBarItem.text = `$(watch) ${text}`;
+      statusBarItem.text = `$(debug-stop) ${text}`;
     },
     resetStatusBarItemText: () => {
-      statusBarItem.text = `$(watch) Start timer`;
+      statusBarItem.text = `$(debug-start) Start timer`;
     },
   };
 };

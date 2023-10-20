@@ -1,11 +1,17 @@
 {
   "name": "pomomongo",
   "displayName": "Pomomongo",
-  "description": "A pomodoro extension for you to be able to work efficiently whilst never leaving code",
+  "description": "A pomodoro extension for you to be able to work efficiently whilst never leaving vscode",
   "publisher": "mongosaurusrex",
   "repository": "https://github.com/Mongosaurusrex/pomomongo",
   "icon": "./assets/pomomongo.png",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "keywords": [
+    "pomodoro",
+    "efficiency",
+    "work",
+    "focus"
+  ],
   "engines": {
     "vscode": "^1.82.0"
   },

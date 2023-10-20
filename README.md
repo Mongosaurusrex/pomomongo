@@ -37,8 +37,8 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-- The timer for a split second shows -1 in the time before switching between focus time and rest time
 - If the last focus time is finished then the timer should just reset, but for now it continues to do the last rest sequence
+- If you reload the editor, change the folder etc. the timer resets
 
 If you experience issues that are not listed here, please report them [here](https://github.com/Mongosaurusrex/pomomongo/issues)
 
@@ -54,5 +54,11 @@ If you experience issues that are not listed here, please report them [here](htt
 
 ### 0.1.0
 First release of the Pomomongo pomodoro timer, basic functionality included
+
+### 0.1.1
+- Minor bugfixes
+- Adding a pause/play button to distinguish between extension states
+- Adding a text for work/focus
+- Appending a 0 if the minute/second is below 10
 
 ---
