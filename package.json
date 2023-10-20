@@ -59,7 +59,7 @@
     "test-compile": "tsc -p ./",
     "test": "echo \"Error: no test specified\" && exit 0",
     "watch": "tsc -watch -p ./",
-    "deploy": "vsce publish --yarn"
+    "deploy": "vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
