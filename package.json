@@ -3,7 +3,9 @@
   "displayName": "Pomomongo",
   "description": "A pomodoro extension for you to be able to work efficiently whilst never leaving code",
   "publisher": "mongosaurusrex",
-  "version": "0.0.1",
+  "repository": "https://github.com/cytechmobile/radicle-vscode-extension",
+  "icon": "./assets/pomomongo.png",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.82.0"
   },
